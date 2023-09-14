@@ -1,0 +1,1 @@
+# This code is based on the tutorial at https://debuggercafe.com/custom-object-detection-using-pytorch-faster-rcnn/ by Sovit Ranjan Rath
