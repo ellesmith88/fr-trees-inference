@@ -36,7 +36,11 @@ def get_size(scale, area, clss):
 def apply_size_labels(scale, map_name):
     df = pd.read_csv(f'{out_dir_path}/{map_name}_tree_coords_nms.csv')
 
-    df['area'] = (df['xmax']-df['xmin']) * (df['ymax']-df['ymin']) 
-    df['size'] = df.apply(lambda row : get_size(scale, row['area'], row['class']), axis=1)
+    if df.empty:
+        df.to_csv(f'{out_dir_path}/{map_name}_tree_coords_size.csv')
 
-    df.to_csv(f'{out_dir_path}/{map_name}_tree_coords_size.csv')
+    else:
+        df['area'] = (df['xmax']-df['xmin']) * (df['ymax']-df['ymin']) 
+        df['size'] = df.apply(lambda row : get_size(scale, row['area'], row['class']), axis=1)
+
+        df.to_csv(f'{out_dir_path}/{map_name}_tree_coords_size.csv')

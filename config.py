@@ -12,7 +12,7 @@ def get_map_name(map_im):
 
 
 # path to original rgb map image
-map_im = '..\..\map_images\Edinburgh_1_500\\74415739.27.tif'
+map_im = '..\..\map_images\Edinburgh_1_500\\74415592.27.tif'
 
 map_name = get_map_name(map_im)
 

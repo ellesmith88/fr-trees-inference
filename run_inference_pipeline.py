@@ -34,8 +34,9 @@ def run(image_dir, map_im=map_im, map_name=map_name):
     # run nms over results
     run_nms(map_name)
 
-    print(f'Applying size lables for {map_name}')
+    print(f'Applying size labels for {map_name}')
     # run size classifier over results
     apply_size_labels(scale, map_name)
+
 
     print(f'Complete for {map_name}')

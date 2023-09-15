@@ -71,16 +71,23 @@ def nms(boxes, conf_threshold=0.7, iou_threshold=0.4):
 def run_nms(map_name):
     df = pd.read_csv(f'{out_dir_path}/{map_name}_tree_coords.csv')
 
-    tree_boxes = []
-    # get out of data fram and pass through function
-    for index, row in df.iterrows():
-        tree_boxes.append([(row['xmin'],row['ymin'],row['xmax'],row['ymax']), row['score'], row['pixel_x_adjusted'], row['pixel_y_adjusted'], row['class']])
-    nms_boxes = nms(tree_boxes)
+    if df.empty:
+        df.to_csv(f'{out_dir_path}/{map_name}_tree_coords_nms.csv')
 
-    new_box_list = []
-    for i in nms_boxes:
-        new_box_list.append([i[0][0], i[0][1], i[0][2], i[0][3], i[1], i[2], i[3], i[4]])
+    else:
 
-    df_nms = pd.DataFrame(new_box_list, columns = ['xmin', 'ymin', 'xmax', 'ymax', 'score', 'pixel_x_adjusted', 'pixel_y_adjusted', 'class'])
-    # save as df again
-    df_nms.to_csv(f'{out_dir_path}/{map_name}_tree_coords_nms.csv')
+        tree_boxes = []
+        # get out of data fram and pass through function
+        for index, row in df.iterrows():
+            tree_boxes.append([(row['xmin'],row['ymin'],row['xmax'],row['ymax']), row['score'], row['pixel_x_adjusted'], row['pixel_y_adjusted'], row['class']])
+        nms_boxes = nms(tree_boxes)
+
+        new_box_list = []
+
+        
+        for i in nms_boxes:
+            new_box_list.append([i[0][0], i[0][1], i[0][2], i[0][3], i[1], i[2], i[3], i[4]])
+
+        df_nms = pd.DataFrame(new_box_list, columns = ['xmin', 'ymin', 'xmax', 'ymax', 'score', 'pixel_x_adjusted', 'pixel_y_adjusted', 'class'])
+        # save as df again
+        df_nms.to_csv(f'{out_dir_path}/{map_name}_tree_coords_nms.csv')

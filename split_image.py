@@ -1,5 +1,4 @@
-from PIL import Image
-from config import image_dir, slice_height, slice_width, y_overlap, x_overlap
+from config import slice_height, slice_width, y_overlap, x_overlap
 import matplotlib.pyplot as plt
 import pandas as pd
 
