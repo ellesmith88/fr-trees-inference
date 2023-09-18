@@ -30,8 +30,13 @@ def convert(out_dir_path, map_im, map_name):
     image_path = map_im
 
     df = pd.read_csv(os.path.join(out_dir_path, f'{map_name}_tree_coords_size.csv'))
-    df['lat'] = df.apply(lambda row : convert_pixel_to_coord(row['pixel_x_adjusted'], row['pixel_y_adjusted'], image_path)[0], axis = 1)
-    df['lon'] = df.apply(lambda row : convert_pixel_to_coord(row['pixel_x_adjusted'], row['pixel_y_adjusted'], image_path)[1], axis = 1)
-    df['lat_bng'] = df.apply(lambda row : convert_pixel_to_coord(row['pixel_x_adjusted'], row['pixel_y_adjusted'], image_path)[2], axis = 1)
-    df['lon_bng'] = df.apply(lambda row : convert_pixel_to_coord(row['pixel_x_adjusted'], row['pixel_y_adjusted'], image_path)[3], axis = 1)
-    df.to_csv(f'{out_dir_path}/{map_name}_tree_coords_lat_lon.csv')
+
+    if df.empty:
+        df.to_csv(f'{out_dir_path}/{map_name}_tree_coords_lat_lon.csv')
+    
+    else:
+        df['lat'] = df.apply(lambda row : convert_pixel_to_coord(row['pixel_x_adjusted'], row['pixel_y_adjusted'], image_path)[0], axis = 1)
+        df['lon'] = df.apply(lambda row : convert_pixel_to_coord(row['pixel_x_adjusted'], row['pixel_y_adjusted'], image_path)[1], axis = 1)
+        df['lat_bng'] = df.apply(lambda row : convert_pixel_to_coord(row['pixel_x_adjusted'], row['pixel_y_adjusted'], image_path)[2], axis = 1)
+        df['lon_bng'] = df.apply(lambda row : convert_pixel_to_coord(row['pixel_x_adjusted'], row['pixel_y_adjusted'], image_path)[3], axis = 1)
+        df.to_csv(f'{out_dir_path}/{map_name}_tree_coords_lat_lon.csv')
