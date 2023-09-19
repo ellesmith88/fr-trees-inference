@@ -1,6 +1,7 @@
 from config import slice_height, slice_width, y_overlap, x_overlap
 import matplotlib.pyplot as plt
 import pandas as pd
+import os
 
 
 def calculate_slice_bboxes(
@@ -60,7 +61,7 @@ def split_image(im_grey, image_dir):
         xmin, ymin, xmax, ymax = s
         im = img[ymin:ymax, xmin:xmax]
 
-        plt.imsave(f'{image_dir}/block{i}.png', im, cmap=plt.cm.gray, vmin=0, vmax=1)
+        plt.imsave(os.path.join(image_dir, f'block{i}.png'), im, cmap=plt.cm.gray, vmin=0, vmax=1)
         
         img_name = f'block{i}.png'
         img_dict = {'image_name': img_name, 'corner_x': xmin, 'corner_y': ymin}

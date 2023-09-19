@@ -31,9 +31,6 @@ def loop():
                 continue
 
             image_dir = f'..\split_ims\{city}\\1_{scale}\{map_name}\greyscale'
-            if not os.path.exists(image_dir):
-                os.makedirs(image_dir)
-                
             run(image_dir, m, map_name)
 
         if args.coords:

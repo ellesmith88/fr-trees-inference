@@ -1,4 +1,4 @@
-from config import map_im, out_dir_path, generate_imgs, scale, map_name
+from config import map_im, out_dir_path, generate_imgs, scale, map_name, image_dir
 from skimage import color
 from skimage import io
 from split_image import split_image
@@ -18,6 +18,9 @@ def run(image_dir, map_im=map_im, map_name=map_name):
     # get original image and convert to greyscale
     im = io.imread(map_im)
     im_grey = convert_to_grey(im)
+
+    if not os.path.exists(image_dir):
+        os.makedirs(image_dir)
 
     # split image up into many patches
     print(f'Splitting image {map_name}')
@@ -40,3 +43,6 @@ def run(image_dir, map_im=map_im, map_name=map_name):
 
 
     print(f'Complete for {map_name}')
+
+if __name__ == '__main__':
+    run(image_dir, map_im, map_name)

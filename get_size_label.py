@@ -1,5 +1,5 @@
 import pandas as pd
-from config import out_dir_path
+from config import out_dir_path, city
 
 def get_size(scale, area, clss):
     if scale == '2500': # this is based on leeds 125642398 - tested on edi 2500 as well
@@ -14,18 +14,40 @@ def get_size(scale, area, clss):
                 size = 'large'
 
     elif scale == '500':
-        if clss == 'conifer':
-            if area < 10500:
-                size = 'medium'
+
+        if city == 'leeds':
+            if clss == 'conifer':
+                if area < 6600:
+                    size = 'small'
+                if (area >= 6600) & (area < 17500):
+                    size = 'medium'
+                if area >= 17500:
+                    size = 'large'
+
             else:
-                size = 'large' # large about 15000 in edi sheets
-        else:
-            if area < 7500:
-                size = 'small'
-            if (area >= 7500) & (area < 20000):
-                size = 'medium'
-            if area >= 20000:
-                size = 'large'
+                if area < 7000:
+                    size = 'small'
+                if (area >= 7000) & (area < 17000):
+                    size = 'medium'
+                if area >= 17000:
+                    size = 'large'
+        
+        elif city == 'edi':
+            if clss == 'conifer':
+                if area < 7500:
+                    size = 'small'
+                if (area >= 7500) & (area < 17500):
+                    size = 'medium'
+                if area >= 17500:
+                    size = 'large'
+
+            else:
+                if area < 10000:
+                    size = 'small'
+                if (area >= 10000) & (area < 20500):
+                    size = 'medium'
+                if area >= 20500:
+                    size = 'large'
 
 
     elif scale == '1056':
