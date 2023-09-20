@@ -1,5 +1,5 @@
 from convert_pixels_to_coords import convert
-from config import out_dir_path, get_map_name, city, scale
+from config import out_dir_path, get_map_name, city, scale, get_image_dir
 from run_inference_pipeline import run
 import argparse
 from glob import glob
@@ -30,7 +30,7 @@ def loop():
             if os.path.isfile(os.path.join(out_dir_path, f'{map_name}_tree_coords_size.csv')):
                 continue
 
-            image_dir = f'..\split_ims\{city}\\1_{scale}\{map_name}\greyscale'
+            image_dir = get_image_dir(city, scale, map_name)
             run(image_dir, m, map_name)
 
         if args.coords:
