@@ -17,9 +17,9 @@ def get_size(scale, area, clss):
 
         if city == 'leeds':
             if clss == 'conifer':
-                if area < 6600:
+                if area < 5500:
                     size = 'small'
-                if (area >= 6600) & (area < 17500):
+                if (area >= 5500) & (area < 17500):
                     size = 'medium'
                 if area >= 17500:
                     size = 'large'
@@ -27,9 +27,9 @@ def get_size(scale, area, clss):
             else:
                 if area < 7000:
                     size = 'small'
-                if (area >= 7000) & (area < 17000):
+                if (area >= 7000) & (area < 12000):
                     size = 'medium'
-                if area >= 17000:
+                if area >= 12000:
                     size = 'large'
         
         elif city == 'edi':

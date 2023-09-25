@@ -17,7 +17,7 @@ map_im = '..\..\map_images\Edinburgh_1_500\\74417532.27.tif'
 map_name = get_map_name(map_im)
 
 # name of directory to store results - include image number 
-out_dir_path = f'model/predictions_leeds/'
+out_dir_path = f'model/predictions_leeds_165_overlap/'
 
 # classes: 0 index is reserved for background
 CLASSES = [
@@ -27,7 +27,7 @@ CLASSES = [
 # any detection having score below this will be discarded
 detection_threshold = 0.6
 
-model_path = 'model/grey_synthetic_200/best.pth'
+model_path = 'model/extra/best.pth'
 
 scale = '500'
 city= 'leeds'
