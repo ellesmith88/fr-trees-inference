@@ -1,5 +1,5 @@
 import pandas as pd
-from config import out_dir_path
+from config import out_dir_path, map_name
 
 # code from
 # https://github.com/vineeth2309/IOU/tree/main
@@ -91,3 +91,8 @@ def run_nms(map_name):
         df_nms = pd.DataFrame(new_box_list, columns = ['xmin', 'ymin', 'xmax', 'ymax', 'score', 'pixel_x_adjusted', 'pixel_y_adjusted', 'class'])
         # save as df again
         df_nms.to_csv(f'{out_dir_path}/{map_name}_tree_coords_nms.csv')
+
+if __name__ == '__main__':
+    print(f'Running NMS for {map_name}')
+    # run nms over results
+    run_nms(map_name)

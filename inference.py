@@ -4,7 +4,7 @@ from glob import glob
 import os
 from model import create_model
 import pandas as pd
-from config import image_dir, CLASSES, detection_threshold, model_path, out_dir_path
+from config import image_dir, CLASSES, detection_threshold, model_path, out_dir_path, scale, map_name, generate_imgs
 
 
 def set_up_computation_device():
@@ -144,5 +144,8 @@ def run_inference(scale, out_dir_name, map_name, generate_imgs, image_dir=image_
         df = pd.DataFrame(coord_list)
         df.to_csv(f'{out_dir_name}/{map_name}_tree_coords.csv')
 
-   
+if __name__ == '__main__':
+    print(f'Runnning inference for {map_name}')
+    # run model over these patches for prediction - output is saved in results directory
+    run_inference(scale, out_dir_path, map_name, generate_imgs, image_dir)
 

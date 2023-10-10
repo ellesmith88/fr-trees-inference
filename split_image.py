@@ -1,7 +1,9 @@
-from config import slice_height, slice_width, y_overlap, x_overlap
+from config import slice_height, slice_width, y_overlap, x_overlap, map_im, image_dir, map_name
 import matplotlib.pyplot as plt
 import pandas as pd
+from skimage import color
 import os
+import io
 
 
 def calculate_slice_bboxes(
@@ -73,3 +75,16 @@ def split_image(im_grey, image_dir):
 
     df = pd.DataFrame(img_list)
     df.to_csv(f'{image_dir}/img_coords.csv')
+
+if __name__ == '__main__':
+    im = io.imread(map_im)
+    im_grey = color.rgb2gray(im)
+
+    if not os.path.exists(image_dir):
+        os.makedirs(image_dir)
+
+    print(f'Splitting image {map_name}')
+    if os.path.isfile(os.path.join(image_dir, f'block0.png')):
+        pass
+    else:
+        split_image(im_grey, image_dir)

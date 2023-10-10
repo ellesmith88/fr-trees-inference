@@ -1,5 +1,5 @@
 import pandas as pd
-from config import out_dir_path, city
+from config import out_dir_path, city, scale, map_name
 
 def get_size(scale, area, clss):
     if scale == '2500': # this is based on leeds 125642398 - tested on edi 2500 as well
@@ -65,4 +65,7 @@ def apply_size_labels(scale, map_name):
         df['area'] = (df['xmax']-df['xmin']) * (df['ymax']-df['ymin']) 
         df['size'] = df.apply(lambda row : get_size(scale, row['area'], row['class']), axis=1)
 
-        df.to_csv(f'{out_dir_path}/{map_name}_tree_coords_size.csv')
+        df.to_csv(f'{out_dir_path}/{map_name}_tree_coords_size.csv', index=False)
+
+if __name__ == '__main__':
+    apply_size_labels(scale, map_name)

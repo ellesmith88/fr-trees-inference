@@ -1,5 +1,6 @@
 import pandas as pd
 from bng_latlon import OSGB36toWGS84
+from config import map_im, out_dir_path, map_name
 import os
 try:
     from osgeo import gdal
@@ -39,4 +40,8 @@ def convert(out_dir_path, map_im, map_name):
         df['lon'] = df.apply(lambda row : convert_pixel_to_coord(row['pixel_x_adjusted'], row['pixel_y_adjusted'], image_path)[1], axis = 1)
         df['lat_bng'] = df.apply(lambda row : convert_pixel_to_coord(row['pixel_x_adjusted'], row['pixel_y_adjusted'], image_path)[2], axis = 1)
         df['lon_bng'] = df.apply(lambda row : convert_pixel_to_coord(row['pixel_x_adjusted'], row['pixel_y_adjusted'], image_path)[3], axis = 1)
-        df.to_csv(f'{out_dir_path}/{map_name}_tree_coords_lat_lon.csv')
+        df.to_csv(f'{out_dir_path}/{map_name}_tree_coords_lat_lon.csv', index=False, columns=['score','class','area','size','lat','lon','lat_bng','lon_bng'])
+
+
+if __name__ == '__main__':
+    convert(out_dir_path, map_im, map_name)
