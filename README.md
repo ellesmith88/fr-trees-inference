@@ -8,7 +8,7 @@ There are 2 methods of use - run over one map sheet or run as a loop over severa
 
 How to use:
 
-**Before starting:** create a new conda environemnt and install the required packages, in environment.yml
+**Before starting:** create a new conda environment and install the required packages, in environment.yml
 It may be necessary to have ``gdal`` installed in separate environment as there may be conflicts with ``pytorch``. The code is setup to allow the necessary code to run without ``pytorch`` and vice-versa.
 
 1. ``config.py`` contains all the settings required and should be adjusted before running any code.
