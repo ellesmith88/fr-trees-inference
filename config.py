@@ -30,7 +30,7 @@ detection_threshold = 0.6
 model_path = 'model/extra/best.pth'
 
 scale = '500'
-city= 'edi'
+city= 'leeds'
 
 def get_image_dir(city, scale, map_name):
     # path to directory that stores images to run model over

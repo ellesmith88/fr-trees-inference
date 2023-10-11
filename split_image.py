@@ -2,6 +2,7 @@ from config import slice_height, slice_width, y_overlap, x_overlap, map_im, imag
 import matplotlib.pyplot as plt
 import pandas as pd
 from skimage import color
+import skimage
 import os
 import io
 
@@ -77,7 +78,7 @@ def split_image(im_grey, image_dir):
     df.to_csv(f'{image_dir}/img_coords.csv')
 
 if __name__ == '__main__':
-    im = io.imread(map_im)
+    im = skimage.io.imread(map_im)
     im_grey = color.rgb2gray(im)
 
     if not os.path.exists(image_dir):
