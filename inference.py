@@ -129,7 +129,7 @@ def run_inference(scale, out_dir_name, map_name, generate_imgs, image_dir=image_
                 
 
             
-                if not os.path.exists(out_dir_path):
+                if not os.path.exists(os.path.join(out_dir_path, map_name)):
                 # Create a new directory because it does not exist
                     path = os.path.join(out_dir_path, map_name)
                     os.makedirs(path)

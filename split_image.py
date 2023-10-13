@@ -79,6 +79,7 @@ def split_image(im_grey, image_dir):
 
 if __name__ == '__main__':
     im = skimage.io.imread(map_im)
+
     im_grey = color.rgb2gray(im)
 
     if not os.path.exists(image_dir):
