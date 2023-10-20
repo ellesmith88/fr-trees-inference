@@ -37,7 +37,7 @@ It may be necessary to have ``gdal`` installed in separate environment as there 
 
     It may be necessary to have ``gdal`` installed in separate environment to run this script as there may be conflicts with ``pytorch``. The code is setup to allow the conversion of coords without ``pytorch`` and vice-versa.
 
-3. If running for one sheet or you are wanting to do each stage separtley (for one sheet only) then each script must be run individually. As long as the information has been set up correctly in ``config.py``, then run in order: ``split_image.py``, ``inference.py``, ``nms.py``, ``gt_size_label.py`` and ``convert_pixels_to_coord.py``.
+3. If running for one sheet or you are wanting to do each stage separately (for one sheet only) then each script must be run individually. As long as the information has been set up correctly in ``config.py``, then run in order: ``split_image.py``, ``inference.py``, ``nms.py``, ``get_size_label.py`` and ``convert_pixels_to_coord.py``.
 
 4. Following these steps you will end up with several output csvs.
   

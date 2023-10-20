@@ -12,12 +12,13 @@ def get_map_name(map_im):
 
 
 # path to original rgb map image
-map_im = '..\..\map_images\Edinburgh_1_500\\74417532.27.tif'
+#map_im = '..\..\map_images\Edinburgh_1_500\\74417532.27.tif'
+map_im = 'C:\\Users\ee21ess\Downloads\CCIII-13-14_large_RGB.27.tif'
 
 map_name = get_map_name(map_im)
 
 # name of directory to store results - include image number 
-out_dir_path = f'model/predictions_edi_extra/'
+out_dir_path = f'model/predictions_pdf_pdfmodel/'
 
 # classes: 0 index is reserved for background
 CLASSES = [
@@ -27,7 +28,7 @@ CLASSES = [
 # any detection having score below this will be discarded
 detection_threshold = 0.6
 
-model_path = 'model/extra/best.pth'
+model_path = 'model/pdfs/last.pth'
 
 scale = '500'
 city= 'leeds'
@@ -45,5 +46,5 @@ generate_imgs = False
 slice_height = 512
 slice_width = 512
 # generally use 70 unless 1:500 - then use 150 for edi, 165 for leeds
-y_overlap = 150
-x_overlap = 150
+y_overlap = 165
+x_overlap = 165
