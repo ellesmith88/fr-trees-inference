@@ -57,14 +57,14 @@ def nms(boxes, conf_threshold=0.7, iou_threshold=0.4):
         current_box = bbox_list_thresholded.pop(0) # Remove the box with highest confidence
         bbox_list_new.append(current_box) # Append it to the list of final boxes
         for box in bbox_list_thresholded:
-            if current_box[4] == box[4]: # Check if both boxes belong to the same class
+            # if current_box[4] == box[4]: # Check if both boxes belong to the same class
                 #import pdb;pdb.set_trace()
-                iou = IOU(current_box[0], box[0]) # Calculate the IOU of the two boxes
-                if iou is None: # they don't overlap
-                    continue
+            iou = IOU(current_box[0], box[0]) # Calculate the IOU of the two boxes
+            if iou is None: # they don't overlap
+                continue
 
-                if iou > iou_threshold: # Check if the iou is greater than the threshold defined
-                    bbox_list_thresholded.remove(box) # If there is significant overlap, then remove the box
+            if iou > iou_threshold: # Check if the iou is greater than the threshold defined
+                bbox_list_thresholded.remove(box) # If there is significant overlap, then remove the box
     return bbox_list_new
 
 
