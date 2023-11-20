@@ -19,11 +19,14 @@ def arg_parse():
 def loop():
     args = arg_parse()
 
-    maps = glob(os.path.join(args.maps, '*.27.tif'))
+    maps = glob(os.path.join(args.maps, '*.tif'))
 
     for m in maps:
 
         map_name = get_map_name(m)
+
+        if not os.path.isfile(os.path.join(out_dir_path, f'{map_name}_tree_coords.csv')):
+                continue
 
         if args.inf:
 

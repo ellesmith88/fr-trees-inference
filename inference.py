@@ -4,7 +4,7 @@ from glob import glob
 import os
 from model import create_model
 import pandas as pd
-from config import image_dir, CLASSES, detection_threshold, model_path, out_dir_path, scale, map_name, generate_imgs
+from config import image_dir, CLASSES, initial_detection_threshold, model_path, out_dir_path, scale, map_name, generate_imgs
 
 
 def set_up_computation_device():
@@ -87,9 +87,9 @@ def run_inference(scale, out_dir_name, map_name, generate_imgs, image_dir=image_
             scores = outputs[0]['scores'].data.numpy()
     
             # filter out boxes according to `detection_threshold`
-            boxes = boxes[scores >= detection_threshold].astype(np.int32)
-            labels = outputs[0]['labels'].data.numpy()[scores >= detection_threshold]
-            scores = scores[scores >= detection_threshold]
+            boxes = boxes[scores >= initial_detection_threshold].astype(np.int32)
+            labels = outputs[0]['labels'].data.numpy()[scores >= initial_detection_threshold]
+            scores = scores[scores >= initial_detection_threshold]
 
             draw_boxes = boxes.copy()
             

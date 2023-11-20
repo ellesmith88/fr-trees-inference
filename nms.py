@@ -1,5 +1,5 @@
 import pandas as pd
-from config import out_dir_path, map_name
+from config import out_dir_path, map_name, final_conifer_threshold, final_broadleaf_threshold
 
 # code from
 # https://github.com/vineeth2309/IOU/tree/main
@@ -37,19 +37,24 @@ def IOU(coords1, coords2):
     return iou
 
 
-def nms(boxes, conf_threshold=0.7, iou_threshold=0.4):
+def nms(boxes, conf_threshold=(final_conifer_threshold, final_broadleaf_threshold), iou_threshold=0.4):
     """
     The function performs nms on the list of boxes:
     boxes: [box1, box2, box3...]
     box1: [(xmin, ymin, xmax, ymax), Confidence, pixel x adjusted, pixel y adjusted, class]
     """
+    final_conifer_threshold, final_broadleaf_threshold = conf_threshold
     bbox_list_thresholded = [] # List to contain the boxes after filtering by confidence
     bbox_list_new = [] # List to contain final boxes after nms 
     # Stage 1: (Sort boxes, and filter out boxes with low confidence)
     boxes_sorted = sorted(boxes, reverse=True, key = lambda x : x[1])	# Sort boxes according to confidence
     for box in boxes_sorted:
-        if box[1] > conf_threshold: # Check if the box has a confidence greater than the threshold
-            bbox_list_thresholded.append(box)	# Append the box to the list of thresholded boxes 
+        if box[4] == 'conifer':
+            if box[1] >= final_conifer_threshold: # Check if the box has a confidence greater than the threshold
+                bbox_list_thresholded.append(box)	# Append the box to the list of thresholded boxes 
+        elif box[4] == 'tree':
+            if box[1] >= final_broadleaf_threshold: # Check if the box has a confidence greater than the threshold
+                bbox_list_thresholded.append(box)	# Append the box to the list of thresholded boxes 
         else:
             pass
     #Stage 2: (Loop over all boxes, and remove boxes with high IOU)

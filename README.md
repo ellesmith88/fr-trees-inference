@@ -15,7 +15,9 @@ It may be necessary to have ``gdal`` installed in separate environment as there 
 - ``map_im`` is the path to the original map image you want to run inference over, if only using the code for one sheet.
 - ``out_dir_path`` is the name of the directory to store results
 - ``CLASSES`` is a list of classes the model should detect (same as the model was trained with)
-- ``detection threshold`` determines the score below which detections will be discarded.
+- ``initial_detection threshold`` determines the score below which detections will be discarded initially.
+- ``final_conifer_threshold`` determines the score below which detections will be discarded in the final NMS run for detected conifer symbols only.
+- ``final_broadleaf_threshold`` determines the score below which detections will be discarded in the final NMS run for detected broadleaf symbols only.
 - ``model_path`` is the path to te model weights
 - ``scale`` is the scale of the maps that trees are being identified on. '500' is 1:500, '2500' is 1:2500 etc.
 - ``city`` is the city of the maps being used

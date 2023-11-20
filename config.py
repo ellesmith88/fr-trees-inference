@@ -13,12 +13,12 @@ def get_map_name(map_im):
 
 # path to original rgb map image
 #map_im = '..\..\map_images\Edinburgh_1_500\\74417532.27.tif'
-map_im = 'C:\\Users\ee21ess\Downloads\CCIII-13-14_large_RGB.27.tif'
+map_im = '..\..\map_images\\Leeds_1_500\\229947114.27.tif'
 
 map_name = get_map_name(map_im)
 
 # name of directory to store results - include image number 
-out_dir_path = f'model/predictions_pdf/'
+out_dir_path = f'model/leeds_1889_predictions_high_conf/'
 
 # classes: 0 index is reserved for background
 CLASSES = [
@@ -26,9 +26,19 @@ CLASSES = [
 ]
 
 # any detection having score below this will be discarded
-detection_threshold = 0.6
+initial_detection_threshold = 0.7
+final_conifer_threshold = 0.849 
+final_broadleaf_threshold = 0.972
 
-model_path = 'model/pdfs/best.pth'
+#leeds vals
+#con = 0.849 
+#broadleaf = 0.972
+
+#edi vals
+#con = 0.975
+#broadleaf = 0.984 
+
+model_path = 'model/extra/best.pth'
 
 scale = '500'
 city= 'leeds'
