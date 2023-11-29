@@ -18,7 +18,7 @@ map_im = '..\..\map_images\\Leeds_1_500\\229947114.27.tif'
 map_name = get_map_name(map_im)
 
 # name of directory to store results - include image number 
-out_dir_path = f'model/leeds_1889_predictions_high_conf/'
+out_dir_path = f'model/predictions_edi_extra_high_conf/'
 
 # classes: 0 index is reserved for background
 CLASSES = [
@@ -27,8 +27,8 @@ CLASSES = [
 
 # any detection having score below this will be discarded
 initial_detection_threshold = 0.7
-final_conifer_threshold = 0.849 
-final_broadleaf_threshold = 0.972
+final_conifer_threshold = 0.975 
+final_broadleaf_threshold = 0.984
 
 #leeds vals
 #con = 0.849 
@@ -41,7 +41,8 @@ final_broadleaf_threshold = 0.972
 model_path = 'model/extra/best.pth'
 
 scale = '500'
-city= 'leeds'
+city= 'edi'
+edina=False
 
 def get_image_dir(city, scale, map_name):
     # path to directory that stores images to run model over

@@ -21,6 +21,7 @@ It may be necessary to have ``gdal`` installed in separate environment as there 
 - ``model_path`` is the path to te model weights
 - ``scale`` is the scale of the maps that trees are being identified on. '500' is 1:500, '2500' is 1:2500 etc.
 - ``city`` is the city of the maps being used
+- ``edina`` should be True or False to specifty if analysing leeds edina images as these are treated slightly differently.
 - ``generate_imgs`` should be True of False. If True, images will be generated showing the bounding boxes around idnetfied objects.
 - ``slice_height`` is the height of 'patches' when a whole image is split up (in pixels)
 - ``slice_width`` is the width of 'patches' when a whole image is split up (in pixels)

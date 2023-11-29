@@ -1,5 +1,5 @@
 import pandas as pd
-from config import out_dir_path, city, scale, map_name
+from config import out_dir_path, city, scale, map_name, edina
 
 def get_size(scale, area, clss):
     if scale == '2500': # this is based on leeds 125642398 - tested on edi 2500 as well
@@ -16,21 +16,40 @@ def get_size(scale, area, clss):
     elif scale == '500':
 
         if city == 'leeds':
-            if clss == 'conifer':
-                if area < 5500:
-                    size = 'small'
-                if (area >= 5500) & (area < 17500):
-                    size = 'medium'
-                if area >= 17500:
-                    size = 'large'
+            if edina is True:
+                if clss == 'conifer':
+                    if area < 7000:
+                        size = 'small'
+                    if (area >= 7000) & (area < 17500):
+                        size = 'medium'
+                    if area >= 17500:
+                        size = 'large'
 
+                else:
+                    if area < 8000:
+                        size = 'small'
+                    if (area >= 8000) & (area < 13000):
+                        size = 'medium'
+                    if area >= 13000:
+                        size = 'large'
+           
             else:
-                if area < 7000:
-                    size = 'small'
-                if (area >= 7000) & (area < 12000):
-                    size = 'medium'
-                if area >= 12000:
-                    size = 'large'
+                if clss == 'conifer':
+                    if area < 5500:
+                        size = 'small'
+                    if (area >= 5500) & (area < 17500):
+                        size = 'medium'
+                    if area >= 17500:
+                        size = 'large'
+
+                else:
+                    if area < 7000:
+                        size = 'small'
+                    if (area >= 7000) & (area < 12000):
+                        size = 'medium'
+                    if area >= 12000:
+                        size = 'large'
+        
         
         elif city == 'edi':
             if clss == 'conifer':
